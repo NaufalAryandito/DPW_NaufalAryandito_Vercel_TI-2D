@@ -1,4 +1,4 @@
-/*Reset & Base*/
+
 * {
     box-sizing: border-box;
     margin: 0;
@@ -13,17 +13,17 @@ body {
 }
 
 a {
-    color: #11340a;
+    color: #1d5b8a;
     text-decoration: none;
 }
 
 a:hover {
-    text-decoration: underline; 
+    text-decoration: underline;
 }
 
-/*Header & Navbar*/
+
 header {
-    background-color: #035100;
+    background-color: #1d5b8a;
     color: #fff;
     padding: 1rem 1.5rem;
     display: flex;
@@ -47,7 +47,7 @@ header nav a {
     font-weight: 500;
 }
 
-/*Main Layout*/
+
 main {
     max-width: 1000px;
     margin: 2rem auto;
@@ -64,10 +64,10 @@ section {
 
 section h2 {
     margin-bottom: 1rem;
-    color: #11340a;
+    color: #1d5b8a;
 }
 
-/*Kartu Statistik (CSS Grid)*/
+
 main section:nth-of-type(2) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -75,7 +75,7 @@ main section:nth-of-type(2) {
 }
 
 main section:nth-of-type(2) article {
-    background-color: #eef7ed;
+    background-color: #eef4fa;
     border-radius: 8px;
     padding: 1.25rem;
     text-align: center;
@@ -83,23 +83,16 @@ main section:nth-of-type(2) article {
 
 main section:nth-of-type(2) article h3 {
     font-size: 0.95rem;
-    color: #4a5c4e;
+    color: #55677a;
     margin-bottom: 0.5rem;
 }
 
 main section:nth-of-type(2) article p {
     font-size: 1.8rem;
     font-weight: 700;
-    color: #11340a;
+    color: #1d5b8a;
 }
 
-/*Tabel*/
-.table-container {
-    width: 100%;
-    overflow-x: auto;
-    -webkit-overflow-scrolling: touch;
-    margin-bottom: 1rem;
-}
 
 table {
     width: 100%;
@@ -113,16 +106,16 @@ th, td {
 }
 
 thead {
-    background-color: #0c3e07;
+    background-color: #1d5b8a;
     color: #fff;
 }
 
 tbody tr:nth-child(even) {
-    background-color: #f7faf7;
+    background-color: #f7f9fb;
 }
 
 tbody tr:hover {
-    background-color: #eef7ed;
+    background-color: #eef4fa;
 }
 
 td button {
@@ -134,34 +127,24 @@ td button {
     font-size: 0.85rem;
 }
 
-/* Tombol Edit */
 td button:first-of-type {
-    background-color: #245e1b;
+    background-color: #f0ad4e;
     color: #fff;
 }
 
-/* Tombol Detail */
-td button:nth-of-type(2) {
-    background-color: #495057;
-    color: #fff;
-}
-
-/* Tombol Hapus */
 td button:last-of-type {
-    background-color: #9c2a2a;
+    background-color: #d9534f;
     color: #fff;
 }
 
-/*Form (Flexbox)*/
-.form-group {
-    display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
+
+form p {
     margin-bottom: 1rem;
 }
 
 form label {
     display: block;
+    margin-bottom: 0.35rem;
     font-weight: 600;
     color: #444;
 }
@@ -176,21 +159,8 @@ form select {
     font-size: 1rem;
 }
 
-form input:focus,
-form select:focus {
-    border-color: #11340a;
-    box-shadow: 0 0 0 3px rgba(17, 52, 10, 0.15);
-    outline: none;
-}
-
-.form-actions {
-    display: flex;
-    gap: 0.75rem;
-    margin-top: 1.25rem;
-}
-
 form button[type="submit"] {
-    background-color: #11340a;
+    background-color: #1d5b8a;
     color: #fff;
     border: none;
     padding: 0.6rem 1.5rem;
@@ -200,10 +170,9 @@ form button[type="submit"] {
 }
 
 form button[type="submit"]:hover {
-    background-color: #0c2607;
+    background-color: #164869;
 }
 
-/*Footer*/
 footer {
     text-align: center;
     padding: 1.25rem;
@@ -211,39 +180,71 @@ footer {
     font-size: 0.9rem;
 }
 
-/* Breakpoint 1: Desktop / Layar Lebar (>= 1024px) */
-@media (min-width: 1024px) {
-    main {
-        max-width: 1100px;
-    }
+/* ===== Tabel Responsif ===== */
+.table-responsive {
+    overflow-x: auto;
+}
 
-    header {
-        padding: 1.25rem 2.5rem;
-    }
 
+.nav-toggle-label {
+    display: none;
+    font-size: 1.6rem;
+    color: #fff;
+    background: none;
+    border: none;
+    cursor: pointer;
+}
+
+.error {
+    display: block;
+    color: #d9534f;
+    font-size: 0.85rem;
+    margin-top: 0.25rem;
+}
+
+
+.search-box {
+    margin-bottom: 1rem;
+}
+
+.search-box input {
+    width: 100%;
+    max-width: 320px;
+    padding: 0.5rem 0.75rem;
+    border: 1px solid #cdd4da;
+    border-radius: 4px;
+}
+
+
+@media (max-width: 768px) {
     main section:nth-of-type(2) {
-        grid-template-columns: repeat(3, 1fr);
-        gap: 1.5rem;
+        grid-template-columns: repeat(2, 1fr);
     }
 }
 
-/* Breakpoint 2: Tablet / Layar Sedang (<= 768px) */
-@media (max-width: 768px) {
+@media (max-width: 480px) {
     header {
-        flex-direction: column;
-        align-items: flex-start;
-        gap: 0.75rem;
+        position: relative;
+    }
+
+    .nav-toggle-label {
+        display: block;
+    }
+
+    header nav {
+        display: none;
+        width: 100%;
+        order: 3;
+        margin-top: 1rem;
+    }
+
+    header nav.nav-open {
+        display: block;
     }
 
     header nav ul {
         flex-direction: column;
-        width: 100%;
-        gap: 0.5rem;
-    }
-
-    header nav ul li a {
-        display: block;
-        padding: 0.35rem 0;
+        gap: 0.75rem;
     }
 
     main section:nth-of-type(2) {
@@ -253,28 +254,5 @@ footer {
     form input,
     form select {
         max-width: 100%;
-    }
-}
-
-/* Breakpoint 3: Smartphone / Layar Sempit (<= 480px) */
-@media (max-width: 480px) {
-    main {
-        margin: 1rem auto;
-        padding: 0 0.75rem;
-    }
-
-    section {
-        padding: 1rem;
-    }
-
-    td button {
-        display: block;
-        width: 100%;
-        margin-bottom: 0.35rem;
-        margin-right: 0;
-    }
-
-    form button[type="submit"] {
-        width: 100%;
     }
 }
