@@ -1,0 +1,27 @@
+{
+  "devDependencies": {
+    "vercel-php": "^0.9.0"
+  },
+  "name": "dpw_naufalaryandito_vercel_ti-2d",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "directories": {
+    "doc": "docs"
+  },
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NaufalAryandito/DPW_NaufalAryandito_Vercel_TI-2D.git"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "type": "commonjs",
+  "bugs": {
+    "url": "https://github.com/NaufalAryandito/DPW_NaufalAryandito_Vercel_TI-2D/issues"
+  },
+  "homepage": "https://github.com/NaufalAryandito/DPW_NaufalAryandito_Vercel_TI-2D#readme"
+}
