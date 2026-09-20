@@ -67,30 +67,57 @@ section h2 {
     color: #1d5b8a;
 }
 
-/* ===== Kartu Statistik (CSS Grid) ===== */
+/* ===== Kartu Statistik Beranda (Redesign & Custom Colors) ===== */
 main section:nth-of-type(2) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
-    gap: 1rem;
+    gap: 1.25rem;
+    background: transparent;
+    padding: 0;
+    box-shadow: none;
 }
 
 main section:nth-of-type(2) article {
-    background-color: #eef4fa;
-    border-radius: 8px;
-    padding: 1.25rem;
-    text-align: center;
+    border-radius: 12px;
+    padding: 1.5rem;
+    text-align: left;
+    color: #fff;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.05);
+    transition: transform 0.2s ease;
+}
+
+main section:nth-of-type(2) article:hover {
+    transform: translateY(-3px);
+}
+
+/* Kartu 1: Total Buku (Nuansa Ungu / Indigo) */
+main section:nth-of-type(2) article:nth-child(1) {
+    background: linear-gradient(135deg, #6366f1, #4f46e5);
+}
+
+/* Kartu 2: Total Anggota (Nuansa Tosca / Emerald) */
+main section:nth-of-type(2) article:nth-child(2) {
+    background: linear-gradient(135deg, #10b981, #059669);
+}
+
+/* Kartu 3: Buku Dipinjam (Nuansa Amber / Oranye Hangat) */
+main section:nth-of-type(2) article:nth-child(3) {
+    background: linear-gradient(135deg, #f59e0b, #d97706);
 }
 
 main section:nth-of-type(2) article h3 {
     font-size: 0.95rem;
-    color: #55677a;
+    color: rgba(255, 255, 255, 0.9);
     margin-bottom: 0.5rem;
+    font-weight: 500;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
 }
 
 main section:nth-of-type(2) article p {
-    font-size: 1.8rem;
+    font-size: 2.2rem;
     font-weight: 700;
-    color: #1d5b8a;
+    color: #fff;
 }
 
 /* ===== Tabel ===== */
