@@ -1,4 +1,4 @@
-
+/* ===== Reset & Base ===== */
 * {
     box-sizing: border-box;
     margin: 0;
@@ -21,7 +21,7 @@ a:hover {
     text-decoration: underline;
 }
 
-
+/* ===== Header & Navbar (Flexbox) ===== */
 header {
     background-color: #1d5b8a;
     color: #fff;
@@ -47,7 +47,7 @@ header nav a {
     font-weight: 500;
 }
 
-
+/* ===== Main Layout ===== */
 main {
     max-width: 1000px;
     margin: 2rem auto;
@@ -67,7 +67,7 @@ section h2 {
     color: #1d5b8a;
 }
 
-
+/* ===== Kartu Statistik (CSS Grid) ===== */
 main section:nth-of-type(2) {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
@@ -93,7 +93,7 @@ main section:nth-of-type(2) article p {
     color: #1d5b8a;
 }
 
-
+/* ===== Tabel ===== */
 table {
     width: 100%;
     border-collapse: collapse;
@@ -137,7 +137,7 @@ td button:last-of-type {
     color: #fff;
 }
 
-
+/* ===== Form ===== */
 form p {
     margin-bottom: 1rem;
 }
@@ -173,6 +173,7 @@ form button[type="submit"]:hover {
     background-color: #164869;
 }
 
+/* ===== Footer ===== */
 footer {
     text-align: center;
     padding: 1.25rem;
@@ -185,7 +186,7 @@ footer {
     overflow-x: auto;
 }
 
-
+/* ===== Hamburger Menu (JS-driven) ===== */
 .nav-toggle-label {
     display: none;
     font-size: 1.6rem;
@@ -195,6 +196,25 @@ footer {
     cursor: pointer;
 }
 
+/* ===== Flash Message ===== */
+.flash {
+    padding: 0.75rem 1rem;
+    border-radius: 6px;
+    margin-bottom: 1rem;
+    font-weight: 500;
+}
+
+.flash-success {
+    background-color: #d4edda;
+    color: #155724;
+}
+
+.flash-error {
+    background-color: #f8d7da;
+    color: #721c24;
+}
+
+/* ===== Pesan Error Validasi ===== */
 .error {
     display: block;
     color: #d9534f;
@@ -202,7 +222,7 @@ footer {
     margin-top: 0.25rem;
 }
 
-
+/* ===== Kolom Pencarian ===== */
 .search-box {
     margin-bottom: 1rem;
 }
@@ -215,13 +235,16 @@ footer {
     border-radius: 4px;
 }
 
+/* ===== Responsive Breakpoints ===== */
 
+/* Tablet ke bawah */
 @media (max-width: 768px) {
     main section:nth-of-type(2) {
         grid-template-columns: repeat(2, 1fr);
     }
 }
 
+/* Mobile */
 @media (max-width: 480px) {
     header {
         position: relative;
