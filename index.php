@@ -2,15 +2,10 @@
 include 'includes/koneksi.php';
 include 'includes/header.php';
 
-// Menghitung statistik untuk ringkasan dashboard (PostgreSQL)
-$res_kamar  = pg_query($koneksi, "SELECT COUNT(*) AS total FROM kamar");
-$total_kamar = $res_kamar ? pg_fetch_assoc($res_kamar)['total'] : 0;
-
-$res_tamu   = pg_query($koneksi, "SELECT COUNT(*) AS total FROM tamu");
-$total_tamu  = $res_tamu ? pg_fetch_assoc($res_tamu)['total'] : 0;
-
-$res_terisi = pg_query($koneksi, "SELECT COUNT(*) AS total FROM kamar WHERE status='Terisi'");
-$kamar_terisi = $res_terisi ? pg_fetch_assoc($res_terisi)['total'] : 0;
+// Menghitung statistik ringkasan dashboard menggunakan PDO PostgreSQL
+$total_kamar  = $koneksi->query("SELECT COUNT(*) FROM kamar")->fetchColumn() ?: 0;
+$total_tamu   = $koneksi->query("SELECT COUNT(*) FROM tamu")->fetchColumn() ?: 0;
+$kamar_terisi = $koneksi->query("SELECT COUNT(*) FROM kamar WHERE status='Terisi'")->fetchColumn() ?: 0;
 ?>
 
 <div class="row mb-4">
