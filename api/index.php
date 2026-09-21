@@ -2,16 +2,17 @@
 // Path: api/index.js
 
 export default async function handler(req, res) {
-  // Set CORS headers to allow cross-origin requests
-  res.setHeader('Access-Control-Allow-Credentials', true);
-  res.setHeader('Access-Control-Allow-Origin', '*');
+  // 1. Setup CORS Headers
+  const origin = req.headers.origin || '*';
+  res.setHeader('Access-Control-Allow-Origin', origin);
+  res.setHeader('Access-Control-Allow-Credentials', 'true');
   res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
   res.setHeader(
     'Access-Control-Allow-Headers',
     'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
   );
 
-  // Handle OPTIONS preflight requests
+  // 2. Handle OPTIONS preflight request
   if (req.method === 'OPTIONS') {
     return res.status(200).end();
   }
@@ -19,7 +20,7 @@ export default async function handler(req, res) {
   try {
     const { method, query, body } = req;
 
-    // Route requests based on HTTP Method
+    // 3. Routing Berdasarkan HTTP Method
     switch (method) {
       case 'GET': {
         const name = query.name || 'World';
@@ -31,8 +32,8 @@ export default async function handler(req, res) {
       }
 
       case 'POST': {
-        // Validate request body
-        if (!body || Object.keys(body).length === 0) {
+        // Validasi Body Request
+        if (!body || typeof body !== 'object' || Object.keys(body).length === 0) {
           return res.status(400).json({
             status: 'error',
             message: 'Body request tidak boleh kosong.'
@@ -47,7 +48,7 @@ export default async function handler(req, res) {
       }
 
       default: {
-        // Handle unsupported HTTP methods
+        // Handle Method yang Tidak Didukung
         res.setHeader('Allow', ['GET', 'POST']);
         return res.status(405).json({
           status: 'error',
@@ -56,12 +57,12 @@ export default async function handler(req, res) {
       }
     }
   } catch (error) {
-    // Catch-all error handler
+    // 4. Catch-all Error Handler
     console.error('Server Error:', error);
     return res.status(500).json({
       status: 'error',
       message: 'Internal Server Error',
-      details: error.message
+      details: process.env.NODE_ENV === 'development' ? error.message : undefined
     });
   }
 }
