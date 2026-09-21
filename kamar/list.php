@@ -3,12 +3,13 @@ include '../includes/koneksi.php';
 include '../includes/header.php';
 
 $query = "SELECT * FROM kamar ORDER BY id DESC";
-$result = pg_query($koneksi, $query);
+$stmt = $koneksi->query($query);
+$kamar_list = $stmt->fetchAll();
 ?>
 
 <div class="d-flex justify-content-between align-items-center mb-3">
     <h2>Daftar Kamar</h2>
-    <a href="tambah.php" class="btn btn-success">+ Tambah Kamar</a>
+    <a href="/kamar/tambah.php" class="btn btn-success">+ Tambah Kamar</a>
 </div>
 
 <div class="table-responsive">
@@ -25,7 +26,7 @@ $result = pg_query($koneksi, $query);
         <tbody>
             <?php 
             $no = 1;
-            while ($row = pg_fetch_assoc($result)) : 
+            foreach ($kamar_list as $row) : 
             ?>
             <tr>
                 <td><?= $no++; ?></td>
@@ -38,7 +39,7 @@ $result = pg_query($koneksi, $query);
                     </span>
                 </td>
             </tr>
-            <?php endwhile; ?>
+            <?php endforeach; ?>
         </tbody>
     </table>
 </div>
