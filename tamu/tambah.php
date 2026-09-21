@@ -16,13 +16,13 @@ include __DIR__ . '/../includes/header.php';
                     </div>
 
                     <div class="mb-3">
-                        <label for="no_hp" class="form-label fw-semibold">Nomor Telepon / HP</label>
-                        <input type="text" class="form-control" id="no_hp" name="no_hp" placeholder="Contoh: 08123456789" required>
+                        <label for="email" class="form-label fw-semibold">Email</label>
+                        <input type="email" class="form-control" id="email" name="email" placeholder="Contoh: nama@email.com" required>
                     </div>
 
                     <div class="mb-3">
-                        <label for="email" class="form-label fw-semibold">Email</label>
-                        <input type="email" class="form-control" id="email" name="email" placeholder="Contoh: nama@email.com" required>
+                        <label for="telepon" class="form-label fw-semibold">Nomor Telepon / HP</label>
+                        <input type="text" class="form-control" id="telepon" name="telepon" placeholder="Contoh: 08123456789" required>
                     </div>
 
                     <div class="mb-4">

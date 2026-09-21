@@ -24,8 +24,8 @@ $tamu_list = $stmt->fetchAll();
                     <tr>
                         <th class="ps-4">No</th>
                         <th>Nama Lengkap</th>
-                        <th>Nomor Telepon</th>
                         <th>Email</th>
+                        <th>Nomor Telepon</th>
                         <th>Alamat</th>
                     </tr>
                 </thead>
@@ -41,9 +41,9 @@ $tamu_list = $stmt->fetchAll();
                         ?>
                         <tr>
                             <td class="ps-4"><?= $no++; ?></td>
-                            <td class="fw-semibold text-dark"><?= htmlspecialchars($row['nama'] ?? $row['nama_lengkap'] ?? ''); ?></td>
-                            <td><?= htmlspecialchars($row['no_hp']); ?></td>
+                            <td class="fw-semibold text-dark"><?= htmlspecialchars($row['nama_lengkap']); ?></td>
                             <td><?= htmlspecialchars($row['email']); ?></td>
+                            <td><?= htmlspecialchars($row['telepon']); ?></td>
                             <td><?= htmlspecialchars($row['alamat']); ?></td>
                         </tr>
                         <?php endforeach; ?>

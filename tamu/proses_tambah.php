@@ -2,18 +2,18 @@
 include __DIR__ . '/../includes/koneksi.php';
 
 if (isset($_POST['submit']) || $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama   = trim($_POST['nama']);
-    $no_hp  = trim($_POST['telepon']); 
-    $email  = trim($_POST['email']);
-    $alamat = trim($_POST['alamat']);
+    $nama_lengkap = trim($_POST['nama_lengkap'] ?? '');
+    $email        = trim($_POST['email'] ?? '');
+    $telepon      = trim($_POST['telepon'] ?? '');
+    $alamat       = trim($_POST['alamat'] ?? '');
 
     try {
-        $stmt = $koneksi->prepare("INSERT INTO tamu (nama, no_hp, email, alamat) VALUES (:nama, :hp, :email, :alamat)");
+        $stmt = $koneksi->prepare("INSERT INTO tamu (nama_lengkap, email, telepon, alamat) VALUES (:nama, :email, :telepon, :alamat)");
         $stmt->execute([
-            ':nama'   => $nama,
-            ':hp'     => $no_hp,
-            ':email'  => $email,
-            ':alamat' => $alamat
+            ':nama'    => $nama_lengkap,
+            ':email'   => $email,
+            ':telepon' => $telepon,
+            ':alamat'  => $alamat
         ]);
 
         header("Location: /tamu/list.php?status=sukses");
