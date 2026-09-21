@@ -16,12 +16,14 @@ CREATE TABLE IF NOT EXISTS kamar (
 );
 
 -- 3. Buat tabel tamu
-CREATE TABLE IF NOT EXISTS tamu (
+-- 1. Hapus tabel tamu lama jika ada (perhatian: data di tabel tamu akan terhapus)
+DROP TABLE IF EXISTS tamu;
+
+-- 2. Buat tabel tamu baru dengan struktur yang pasti cocok dengan kode PHP
+CREATE TABLE tamu (
     id SERIAL PRIMARY KEY,
     nama VARCHAR(150) NOT NULL,
+    no_hp VARCHAR(20) NOT NULL,
     email VARCHAR(100) NOT NULL,
-    telepon VARCHAR(20) NOT NULL,
-    nik VARCHAR(30) NOT NULL
+    alamat TEXT NOT NULL
 );
-ALTER TABLE tamu RENAME COLUMN nik TO alamat;
-ALTER TABLE tamu ALTER COLUMN alamat TYPE TEXT;

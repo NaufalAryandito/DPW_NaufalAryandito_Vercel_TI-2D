@@ -2,16 +2,15 @@
 include __DIR__ . '/../includes/koneksi.php';
 
 if (isset($_POST['submit']) || $_SERVER['REQUEST_METHOD'] === 'POST') {
-    $nama_lengkap = trim($_POST['nama_lengkap']);
-    $no_hp        = trim($_POST['no_hp']);
-    $email        = trim($_POST['email']);
-    $alamat       = trim($_POST['alamat']);
+    $nama   = trim($_POST['nama']);
+    $no_hp  = trim($_POST['telepon']); 
+    $email  = trim($_POST['email']);
+    $alamat = trim($_POST['alamat']);
 
     try {
-        // Menggunakan kolom 'nama' sesuai database Supabase
         $stmt = $koneksi->prepare("INSERT INTO tamu (nama, no_hp, email, alamat) VALUES (:nama, :hp, :email, :alamat)");
         $stmt->execute([
-            ':nama'   => $nama_lengkap,
+            ':nama'   => $nama,
             ':hp'     => $no_hp,
             ':email'  => $email,
             ':alamat' => $alamat
