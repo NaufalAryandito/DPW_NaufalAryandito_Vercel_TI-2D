@@ -1,5 +1,9 @@
 {
-  "routes": [
-    { "src": "/(.*)", "dest": "/api/index.php" }
+  "version": 2,
+  "rewrites": [
+    {
+      "source": "/api/(.*)",
+      "destination": "/api"
+    }
   ]
 }
