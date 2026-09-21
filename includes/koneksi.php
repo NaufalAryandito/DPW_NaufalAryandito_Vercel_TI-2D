@@ -1,16 +1,16 @@
 <?php
-$host     = "DATABASE_URL=postgresql://postgres.lakewdkrusarsizifxfu:ditoGanteng@aws-0-ap-northeast-1.pooler.supabase.com:6543/postgres; // Ganti dengan host Supabase Anda
-$port     = "5432";
+$host     = "aws-0-ap-northeast-1.pooler.supabase.com";
+$port     = "6543";
 $dbname   = "postgres";
-$user     = "postgres";
-$password = "ditoGanteng";            // Masukkan password DB Supabase di sini
+$user     = "postgres.lakewdkrusarsizifxfu";
+$password = "ditoGanteng";
 
 try {
-    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
+    $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;sslmode=require";
     $pdo = new PDO($dsn, $user, $password, [
         PDO::ATTR_ERRMODE => PDO::ERRMODE_EXCEPTION
     ]);
 } catch (PDOException $e) {
-    die("Koneksi gagal: " . $e->getMessage());
+    die("Koneksi Supabase gagal: " . $e->getMessage());
 }
 ?>
