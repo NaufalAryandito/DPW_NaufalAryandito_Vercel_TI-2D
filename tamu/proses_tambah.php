@@ -8,7 +8,8 @@ if (isset($_POST['submit']) || $_SERVER['REQUEST_METHOD'] === 'POST') {
     $alamat       = trim($_POST['alamat']);
 
     try {
-        $stmt = $koneksi->prepare("INSERT INTO tamu (nama_lengkap, no_hp, email, alamat) VALUES (:nama, :hp, :email, :alamat)");
+        // Menggunakan kolom 'nama' sesuai database Supabase
+        $stmt = $koneksi->prepare("INSERT INTO tamu (nama, no_hp, email, alamat) VALUES (:nama, :hp, :email, :alamat)");
         $stmt->execute([
             ':nama'   => $nama_lengkap,
             ':hp'     => $no_hp,

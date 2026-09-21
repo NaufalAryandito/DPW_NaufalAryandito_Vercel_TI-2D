@@ -41,7 +41,7 @@ $tamu_list = $stmt->fetchAll();
                         ?>
                         <tr>
                             <td class="ps-4"><?= $no++; ?></td>
-                            <td class="fw-semibold text-dark"><?= htmlspecialchars($row['nama_lengkap']); ?></td>
+                            <td class="fw-semibold text-dark"><?= htmlspecialchars($row['nama'] ?? $row['nama_lengkap'] ?? ''); ?></td>
                             <td><?= htmlspecialchars($row['no_hp']); ?></td>
                             <td><?= htmlspecialchars($row['email']); ?></td>
                             <td><?= htmlspecialchars($row['alamat']); ?></td>
