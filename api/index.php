@@ -1,68 +1,69 @@
-// Vercel Serverless Function Handler
-// Path: api/index.js
+<?php
+include 'includes/koneksi.php';
+include 'includes/header.php';
 
-export default async function handler(req, res) {
-  // 1. Setup CORS Headers
-  const origin = req.headers.origin || '*';
-  res.setHeader('Access-Control-Allow-Origin', origin);
-  res.setHeader('Access-Control-Allow-Credentials', 'true');
-  res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS,PATCH,DELETE,POST,PUT');
-  res.setHeader(
-    'Access-Control-Allow-Headers',
-    'X-CSRF-Token, X-Requested-With, Accept, Accept-Version, Content-Length, Content-MD5, Content-Type, Date, X-Api-Version'
-  );
+// Menghitung statistik untuk ringkasan dashboard (PostgreSQL)
+$res_kamar  = pg_query($koneksi, "SELECT COUNT(*) AS total FROM kamar");
+$total_kamar = $res_kamar ? pg_fetch_assoc($res_kamar)['total'] : 0;
 
-  // 2. Handle OPTIONS preflight request
-  if (req.method === 'OPTIONS') {
-    return res.status(200).end();
-  }
+$res_tamu   = pg_query($koneksi, "SELECT COUNT(*) AS total FROM tamu");
+$total_tamu  = $res_tamu ? pg_fetch_assoc($res_tamu)['total'] : 0;
 
-  try {
-    const { method, query, body } = req;
+$res_terisi = pg_query($koneksi, "SELECT COUNT(*) AS total FROM kamar WHERE status='Terisi'");
+$kamar_terisi = $res_terisi ? pg_fetch_assoc($res_terisi)['total'] : 0;
+?>
 
-    // 3. Routing Berdasarkan HTTP Method
-    switch (method) {
-      case 'GET': {
-        const name = query.name || 'World';
-        return res.status(200).json({
-          status: 'success',
-          message: `Hello, ${name}!`,
-          timestamp: new Date().toISOString()
-        });
-      }
+<div class="row mb-4">
+    <div class="col-12">
+        <h3 class="fw-bold text-dark mb-1">Dashboard Overview</h3>
+        <p class="text-muted">Selamat datang di sistem manajemen informasi booking hotel.</p>
+    </div>
+</div>
 
-      case 'POST': {
-        // Validasi Body Request
-        if (!body || typeof body !== 'object' || Object.keys(body).length === 0) {
-          return res.status(400).json({
-            status: 'error',
-            message: 'Body request tidak boleh kosong.'
-          });
-        }
+<!-- Cards Ringkasan -->
+<div class="row g-4 mb-5">
+    <div class="col-md-4">
+        <div class="card card-stats bg-primary text-white shadow-sm p-3">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="text-uppercase fw-semibold text-white-50">Total Kamar</h6>
+                    <h2 class="fw-bold mb-0"><?= $total_kamar; ?></h2>
+                </div>
+                <div class="icon-box"><i class="fa-solid fa-door-open"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-stats bg-warning text-white shadow-sm p-3">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="text-uppercase fw-semibold text-white-50">Kamar Terisi</h6>
+                    <h2 class="fw-bold mb-0"><?= $kamar_terisi; ?></h2>
+                </div>
+                <div class="icon-box"><i class="fa-solid fa-bed"></i></div>
+            </div>
+        </div>
+    </div>
+    <div class="col-md-4">
+        <div class="card card-stats bg-success text-white shadow-sm p-3">
+            <div class="d-flex align-items-center justify-content-between">
+                <div>
+                    <h6 class="text-uppercase fw-semibold text-white-50">Terdaftar Tamu</h6>
+                    <h2 class="fw-bold mb-0"><?= $total_tamu; ?></h2>
+                </div>
+                <div class="icon-box"><i class="fa-solid fa-users"></i></div>
+            </div>
+        </div>
+    </div>
+</div>
 
-        return res.status(201).json({
-          status: 'success',
-          message: 'Data berhasil diterima',
-          dataReceived: body
-        });
-      }
+<!-- Akses Cepat -->
+<div class="card border-0 shadow-sm rounded-4 p-4">
+    <h5 class="fw-bold mb-3"><i class="fa-solid fa-rocket me-2 text-primary"></i>Akses Cepat</h5>
+    <div class="d-flex gap-3 flex-wrap">
+        <a href="kamar/tambah.php" class="btn btn-primary px-4 py-2"><i class="fa-solid fa-plus me-2"></i>Tambah Kamar Baru</a>
+        <a href="tamu/tambah.php" class="btn btn-outline-primary px-4 py-2"><i class="fa-solid fa-user-plus me-2"></i>Tambah Tamu Baru</a>
+    </div>
+</div>
 
-      default: {
-        // Handle Method yang Tidak Didukung
-        res.setHeader('Allow', ['GET', 'POST']);
-        return res.status(405).json({
-          status: 'error',
-          message: `Method ${method} tidak diizinkan.`
-        });
-      }
-    }
-  } catch (error) {
-    // 4. Catch-all Error Handler
-    console.error('Server Error:', error);
-    return res.status(500).json({
-      status: 'error',
-      message: 'Internal Server Error',
-      details: process.env.NODE_ENV === 'development' ? error.message : undefined
-    });
-  }
-}
+<?php include 'includes/footer.php'; ?>
