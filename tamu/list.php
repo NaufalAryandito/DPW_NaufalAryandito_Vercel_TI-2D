@@ -1,10 +1,8 @@
 <?php
-include '../includes/koneksi.php';
-include '../includes/header.php';
+include __DIR__ . '/../includes/koneksi.php';
+include __DIR__ . '/../includes/header.php';
 
-// Mengambil daftar tamu dari Supabase (PostgreSQL)
-$query = "SELECT * FROM tamu ORDER BY id DESC";
-$stmt = $koneksi->query($query);
+$stmt = $koneksi->query("SELECT * FROM tamu ORDER BY id DESC");
 $tamu_list = $stmt->fetchAll();
 ?>
 
@@ -56,4 +54,4 @@ $tamu_list = $stmt->fetchAll();
     </div>
 </div>
 
-<?php include '../includes/footer.php'; ?>
+<?php include __DIR__ . '/../includes/footer.php'; ?>
