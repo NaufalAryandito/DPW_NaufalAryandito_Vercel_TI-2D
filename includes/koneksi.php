@@ -3,7 +3,7 @@ $host     = "DATABASE_URL=postgresql://postgres.lakewdkrusarsizifxfu:ditoGanteng
 $port     = "5432";
 $dbname   = "postgres";
 $user     = "postgres";
-$password = "PASSWORD_DATABASE_ANDA";            // Masukkan password DB Supabase di sini
+$password = "ditoGanteng";            // Masukkan password DB Supabase di sini
 
 try {
     $dsn = "pgsql:host=$host;port=$port;dbname=$dbname;";
